@@ -17,6 +17,7 @@ import 'state/theme_state.dart';
 import 'package:routemaster/routemaster.dart';
 import 'utils/app_routes.dart';
 // import 'package:device_preview/device_preview.dart';
+import 'package:drift_flutter_example/services/db.dart';
 
 /// Entry Point:
 void main() {
@@ -26,6 +27,10 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (BuildContext context) => RootStateProvider()),
         ChangeNotifierProvider(create: (BuildContext context) => ThemeStateProvider()),
+        Provider(
+          create: (BuildContext context) => MyDB(),
+          dispose: (context, db) => MyDB().close(),
+        )
       ],
       // child: DevicePreview(
       //   enabled: !kReleaseMode,
